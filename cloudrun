@@ -1,0 +1,47 @@
+34.125.77.91 ex
+10.182.0.2 in
+
+34.67.44.252 ipub
+
+gsutil mb -l $LOCATION gs://qwiklabs-gcp-00-c756296f4715
+
+gsutil cp my-excellent-blog.png gs://qwiklabs-gcp-00-c756296f4715/my-excellent-blog.png
+
+gsutil acl ch -u allUsers:R gs://qwiklabs-gcp-00-c756296f4715/my-excellent-blog.png
+
+
+
+<html>s
+<head><title>Welcome to my excellent blog</title></head>
+<body>
+<h1>Welcome to my excellent blog</h1>
+<img src='https://storage.googleapis.com/qwiklabs-gcp-00-c756296f4715/my-excellent-blog.png'>
+<?php
+ $dbserver = "34.67.44.252";
+$dbuser = "blogdbuser";
+$dbpassword = "12345";
+// In a production blog, we would not store the MySQL
+// password in the document root. Instead, we would store it in a
+// configuration file elsewhere on the web server VM instance.
+$conn = new mysqli($dbserver, $dbuser, $dbpassword);
+if (mysqli_connect_error()) {
+        echo ("Database connection failed: " . mysqli_connect_error());
+} else {
+        echo ("Database connection succeeded.");
+}
+?>
+</body></html>
+
+//Cloud Run
+
+gcloud builds submit --tag gcr.io/qwiklabs-gcp-03-824ec70a36c6/helloworld
+
+
+docker run -d -p 8080:8080 gcr.io/qwiklabs-gcp-03-824ec70a36c6/helloworld
+
+gcloud run deploy --image gcr.io/qwiklabs-gcp-03-824ec70a36c6/helloworld --allow-unauthenticated --region=$LOCATION
+
+
+//hapus container
+
+gcloud container images delete gcr.io/qwiklabs-gcp-03-824ec70a36c6/helloworld
