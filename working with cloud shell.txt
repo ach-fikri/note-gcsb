@@ -1,0 +1,33 @@
+//command in cloud shell
+gcloud compute regions list //list avaible region
+
+INFRACLASS_REGION=[YOUR_REGION] //membuat environment vareable untuk region
+
+echo $INFRACLASS_REGION //mencetak Environment yang kita buat sebelumnya
+
+mkdir infraclass //membuat directory infraclass
+touch infraclass/config //membuat file config di dalam folder yang tadi kita buat
+
+echo INFRACLASS_REGION=$INFRACLASS_REGION >> ~/infraclass/config //menambahkan ENV yang kita ke file config
+
+INFRACLASS_PROJECT_ID=[YOUR_PROJECT_ID] //membuat env kedua 
+
+INFRACLASS_PROJECT_ID=qwiklabs-gcp-01-a1552395be2b
+
+echo INFRACLASS_PROJECT_ID=$INFRACLASS_PROJECT_ID >> ~/infraclass/config //menambahkan ke file config
+
+source infraclass/config //untuk set env
+echo $INFRACLASS_PROJECT_ID //memastikan env
+
+nano .profile //mengedit file .profile and tambahkan 
+source infraclass/config ke .profile agar dikenali
+
+<-membuat bucket-->
+gsutil mb gs://<BUCKET_NAME> //membuat bicket
+
+gsutil mb gs://say_hell
+
+gsutil cp [MY_FILE] gs://[BUCKET_NAME] //mengcopy file ke bucket
+
+gsutil cp mingguan.txt gs://say_hell
+

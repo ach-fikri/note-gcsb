@@ -1,0 +1,2 @@
+sudo /opt/bitnami/ctlscript.sh stop //menghentikan service jenskin
+sudo /opt/bitnami/ctlscript.sh restart //restart jenskin
