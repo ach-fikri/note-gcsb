@@ -1,0 +1,24 @@
+gcloud compute networks create privatenet --subnet-mode=custom //
+
+gcloud compute networks subnets create privatesubnet-us --network=privatenet --region=us-west1 --range=172.16.0.0/24 //untuk us
+
+gcloud compute networks subnets create privatesubnet-eu --network=privatenet --region=europe-west1 --range=172.20.0.0/20 //untu eropa
+
+
+gcloud compute networks list //list 
+
+
+
+
+//membuat firewall//
+gcloud compute --project=qwiklabs-gcp-00-6980dec32f1f firewall-rules create managementnet-allow-icmp-ssh-rdp --direction=INGRESS --priority=1000 --network=managementnet --action=ALLOW --rules=tcp:22,tcp:3389,icmp --source-ranges=0.0.0.0/0
+
+
+To create the privatenet-allow-icmp-ssh-rdp firewall rule : 
+
+gcloud compute firewall-rules create privatenet-allow-icmp-ssh-rdp --direction=INGRESS --priority=1000 --network=privatenet --action=ALLOW --rules=icmp,tcp:22,tcp:3389 --source-ranges=0.0.0.0/0
+
+list all the firewall rules (sorted by VPC network) :
+gcloud compute firewall-rules list --sort-by=NETWORK
+
+

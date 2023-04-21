@@ -1,0 +1,12 @@
+sudo mkdir -p /home/minecraft //membuat mount poin
+
+sudo mkfs.ext4 -F -E lazy_itable_init=0,\
+lazy_journal_init=0,discard \
+/dev/disk/by-id/google-minecraft-disk
+
+
+sudo mount -o discard,defaults /dev/disk/by-id/google-minecraft-disk /home/minecraft
+
+export YOUR_BUCKET_NAME=qwiklabs-gcp-01-d7c471cc070c
+
+gsutil mb gs://$YOUR_BUCKET_NAME-minecraft-backup
